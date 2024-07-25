@@ -2,8 +2,18 @@
 <html>
 <head>
     <title>Todo App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    @livewireStyles
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel APP') }}</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <div class="container">
@@ -14,12 +24,15 @@
                         <h2>Todo App</h2>
                     </div>
                     <div class="card-body">
-                    @livewire('todo-list.create-list')
+                    @include('livewire.todo-list.create')
+                    @livewire('todo-list.todo-list-table')
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Include EditTodoListModal component -->
+    @livewire('todo-list.edit-todo-list-modal')
     @livewireScripts
 </body>
 </html>
