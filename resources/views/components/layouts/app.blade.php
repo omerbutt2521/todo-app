@@ -24,7 +24,7 @@
                         <h2>Todo App</h2>
                     </div>
                     <div class="card-body">
-                    @include('livewire.todo-list.create')
+                    @livewire('todo-list.create-list')
                     @livewire('todo-list.todo-list-table')
                     </div>
                 </div>

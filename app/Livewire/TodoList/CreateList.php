@@ -32,6 +32,7 @@ class CreateList extends Component
   
         TodoList::create($validatedDate);
         $this->resetInputFields();
+        $this->dispatch('todoListUpdated');
     }
     public function edit($id)
     {

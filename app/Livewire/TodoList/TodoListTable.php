@@ -19,8 +19,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class TodoListTable extends PowerGridComponent
 {
     use WithExport;
-
-    protected $listeners = ['showModal', 'closeModal', 'todoListUpdated'];
+    protected $listeners = ['todoListUpdated' => 'refreshData'];
 
     public function setUp(): array
     {
@@ -106,10 +105,14 @@ final class TodoListTable extends PowerGridComponent
         return [
             Button::add('edit')
                 ->slot('Edit')
-                ->id()
                 ->class('btn btn-dark')
-                ->dispatchTo('edit-todo-list-modal', 'showEditModal', ['id' => $row->id])
+                ->dispatch('showEditModal', ['id' => $row->id])
         ];
+    }
+    public function refreshData()
+    {
+        // Reload the datasource or perform actions to refresh the grid
+        $this->resetPage(); // Reset pagination if needed
     }
 
     /*
