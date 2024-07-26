@@ -3,6 +3,7 @@
 namespace App\Livewire\TodoList;
 
 use App\Models\TodoList;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -18,8 +19,9 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class TodoListTable extends PowerGridComponent
 {
-    use WithExport;
-    protected $listeners = ['todoListUpdated' => 'refreshData'];
+    use WithExport, LivewireAlert;
+    public $todo_id;
+    protected $listeners = ['todoListUpdated' => 'refreshData','confirmDelete','delete'];
 
     public function setUp(): array
     {
@@ -76,10 +78,6 @@ final class TodoListTable extends PowerGridComponent
             Column::make('Completed', 'completed')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
@@ -106,8 +104,26 @@ final class TodoListTable extends PowerGridComponent
             Button::add('edit')
                 ->slot('Edit')
                 ->class('btn btn-dark')
-                ->dispatch('showEditModal', ['id' => $row->id])
+                ->dispatch('showEditModal', ['id' => $row->id]) ,
+            Button::add('delete')
+            ->slot('Delete')
+            ->class('btn btn-danger')
+            ->dispatch('confirmDelete', ['id' => $row->id])
         ];
+    }
+    public function confirmDelete($id)
+    {
+        $this->todo_id = $id;
+        $this->confirm('Are you sure do want to delete?', [
+            'onConfirmed' =>"delete",
+            'position' =>'center'
+        ]);
+    }
+    public function delete()
+    {
+       TodoList::find($this->todo_id)->delete();
+        $this->alert('success', 'Todo deleted successfully!');
+        $this->refreshData();
     }
     public function refreshData()
     {

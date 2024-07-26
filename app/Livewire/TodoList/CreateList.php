@@ -2,13 +2,14 @@
 
 namespace App\Livewire\TodoList;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\TodoList;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 class CreateList extends Component
 {
-    use WithPagination, WithoutUrlPagination; 
+    use WithPagination, WithoutUrlPagination, LivewireAlert;
     public  $title, $name,$description, $todo_id;
     public $updateMode = false;
     protected $paginationTheme = 'bootstrap';
@@ -32,6 +33,7 @@ class CreateList extends Component
   
         TodoList::create($validatedDate);
         $this->resetInputFields();
+        $this->alert('success', 'Todo List Added Successfully');
         $this->dispatch('todoListUpdated');
     }
     public function edit($id)
