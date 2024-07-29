@@ -26,9 +26,9 @@ class CreateList extends Component
     public function store()
     {
         $validatedDate = $this->validate([
-            'title' => 'required',
-            'name' => 'required',
-            'description'=>'required'
+            'title' => 'required|max:100',
+            'name' => 'required|max:150',
+            'description'=>'required|max:255'
         ]);
         $validatedDate['user_id']=auth()->user()->id;
         TodoList::create($validatedDate);

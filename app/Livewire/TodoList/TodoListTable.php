@@ -58,7 +58,9 @@ final class TodoListTable extends PowerGridComponent
             ->add('name')
             ->add('title')
             ->add('description')
-            ->add('completed')
+            ->add('completed', function ($task) {
+                return $task->completed ? 'Completed' : 'In Progress';
+            })
             ->add('created_at');
     }
 
