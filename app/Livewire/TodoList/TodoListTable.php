@@ -3,6 +3,7 @@
 namespace App\Livewire\TodoList;
 
 use App\Models\TodoList;
+use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -62,7 +63,7 @@ final class TodoListTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
+            Column::make('Id', 'id') ->visibleInExport(visible: false),
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
@@ -82,13 +83,23 @@ final class TodoListTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            Column::action('Action') ->visibleInExport(visible: false)
         ];
     }
 
     public function filters(): array
     {
         return [
+         //   Filter::inputText('name')->placeholder('Name')->operators(['contains', 'is', 'is_not']),
+            Filter::inputText('title')->placeholder('Title'),
+            Filter::boolean('completed')->label('Completed', 'Progress'),
+            Filter::multiSelect('name', 'id')
+            ->dataSource(User::all())
+            ->optionValue('id')
+            ->optionLabel('name')
+
+            //Filter::number('price_BRL', 'price')->thousands('.')
+            //->decimal(','),
         ];
     }
 
