@@ -17,6 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Illuminate\Support\Facades\Auth;
 
 final class TodoListTable extends PowerGridComponent
 {
@@ -41,7 +42,8 @@ final class TodoListTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return TodoList::query();
+        $userId = Auth::id();
+        return TodoList::query()->where('user_id', $userId);;
     }
 
     public function relationSearch(): array

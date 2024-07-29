@@ -30,7 +30,7 @@ class CreateList extends Component
             'name' => 'required',
             'description'=>'required'
         ]);
-  
+        $validatedDate['user_id']=auth()->user()->id;
         TodoList::create($validatedDate);
         $this->resetInputFields();
         $this->alert('success', 'Todo List Added Successfully');

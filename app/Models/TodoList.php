@@ -14,6 +14,6 @@ class TodoList extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title','description','completed'
+        'name', 'title','description','completed','user_id'
     ];
 }
