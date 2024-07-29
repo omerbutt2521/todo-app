@@ -8,9 +8,9 @@ FrameWorks
 libraries
     PowerGrid v5.10.0  use docs to proceed all these below
     TomSelect
-    SlimSelect 
-    Flatpicker 
-    openspout 
+    SlimSelect multi-select
+    Flatpicker for date & time picker
+    openspout  for excel export/download
 Database
     Postgresql  15
 

@@ -19,12 +19,8 @@
             @if (Route::has('login'))
                 <div class="d-flex justify-content-center">
                     @auth
-                        <a href="{{ url('/home') }}" class="btn btn-primary me-2">Home</a>
-                        <a href="{{ route('logout') }}" class="btn btn-danger" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                        <a href="{{ url('/dashboard') }}" class="btn btn-primary me-2">Dashboard</a>
+                        
                     @else
                         <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
                         <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
