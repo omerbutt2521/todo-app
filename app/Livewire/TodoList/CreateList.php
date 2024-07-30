@@ -12,6 +12,7 @@ class CreateList extends Component
     use WithPagination, WithoutUrlPagination, LivewireAlert;
     public  $title, $name,$description, $todo_id;
     public $updateMode = false;
+    public $showModal = false;
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
@@ -35,6 +36,16 @@ class CreateList extends Component
         $this->resetInputFields();
         $this->alert('success', 'Todo List Added Successfully');
         $this->dispatch('todoListUpdated');
+        $this->showModal = false;
+    }
+    public function showAddModal()
+    {
+        $this->showModal = true;
+    }
+
+    public function hideModal()
+    {
+        $this->showModal = false;
     }
     public function edit($id)
     {

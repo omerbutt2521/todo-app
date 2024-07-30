@@ -1,6 +1,6 @@
 <div>
     @if($showModal)
-        <div class="modal fade show d-block" tabindex="-1" style="display: block;" role="dialog">
+    <div class="modal fade show" style="display: block;" tabindex="-1" aria-labelledby="editModalLabel" aria-modal="true" role="dialog">  
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -8,7 +8,6 @@
                         <button type="button" class="btn-close" wire:click="hideModal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Your form for editing -->
                         <form wire:submit.prevent="save">
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -32,5 +31,6 @@
                 </div>
             </div>
         </div>
+        <div class="modal-backdrop fade show"></div>
     @endif
 </div>

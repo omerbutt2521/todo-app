@@ -23,11 +23,12 @@ final class TodoListTable extends PowerGridComponent
 {
     use WithExport, LivewireAlert;
     public $todo_id;
+    public $titleFilter = '';
+    public $completedFilter = '';
     protected $listeners = ['todoListUpdated' => 'refreshData','confirmDelete','delete'];
-
     public function setUp(): array
     {
-        $this->showCheckBox();
+        $this->showCheckBox();//for show/hide checkboxes 
 
         return [
             Exportable::make('export')
@@ -43,7 +44,15 @@ final class TodoListTable extends PowerGridComponent
     public function datasource(): Builder
     {
         $userId = Auth::id();
-        return TodoList::query()->where('user_id', $userId);;
+        $query=TodoList::query()->where('user_id', $userId);
+        if ($this->titleFilter) {
+            $query->where('title', 'like', '%' . $this->titleFilter . '%');
+        }
+
+        if ($this->completedFilter !== '') {
+            $query->where('completed', $this->completedFilter);
+        }
+        return $query;
     }
 
     public function relationSearch(): array
@@ -94,14 +103,9 @@ final class TodoListTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-         //   Filter::inputText('name')->placeholder('Name')->operators(['contains', 'is', 'is_not']),
+            Filter::inputText('name')->placeholder('Name')->operators(['contains', 'is', 'is_not']),
             Filter::inputText('title')->placeholder('Title'),
             Filter::boolean('completed')->label('Completed', 'Progress'),
-            Filter::multiSelect('name', 'id')
-            ->dataSource(User::all())
-            ->optionValue('id')
-            ->optionLabel('name')
-
             //Filter::number('price_BRL', 'price')->thousands('.')
             //->decimal(','),
         ];
@@ -145,6 +149,7 @@ final class TodoListTable extends PowerGridComponent
         // Reload the datasource or perform actions to refresh the grid
         $this->resetPage(); // Reset pagination if needed
     }
+   
 
     /*
     public function actionRules($row): array
