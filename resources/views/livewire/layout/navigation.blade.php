@@ -43,6 +43,11 @@ new class extends Component
                 {{ __('Todo List') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('file-uploads') ? 'active' : '' }}" href="{{ route('file-uploads') }}" wire:navigate>
+                {{ __('File Uploads') }}
+            </a>
+        </li>
       </ul>
       <!-- Right-aligned dropdown -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

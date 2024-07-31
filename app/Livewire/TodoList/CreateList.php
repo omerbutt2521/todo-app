@@ -14,11 +14,6 @@ class CreateList extends Component
     public $updateMode = false;
     public $showModal = false;
     protected $paginationTheme = 'bootstrap';
-    public function render()
-    {
-        $todos = TodoList::paginate(5);
-        return view('livewire.todo-list.list',['todos' => $todos]);
-    }
     private function resetInputFields(){
         $this->title = '';
         $this->name = '';

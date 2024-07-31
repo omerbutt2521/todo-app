@@ -1,5 +1,6 @@
 <?php
 use App\Livewire\TodoList\CreateList;
+use App\Livewire\UploadPhoto;
 use App\Http\Controllers\FetchApi;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,6 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+Route::get('/file-uploads', UploadPhoto::class)->middleware(['auth', 'verified'])->name('file-uploads');   
 Route::get('/fetch-api', [FetchApi::class,'index'])->name('index');
 require __DIR__.'/auth.php';
