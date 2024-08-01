@@ -48,6 +48,12 @@ new class extends Component
                 {{ __('File Uploads') }}
             </a>
         </li>
+        <!--
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('import-users') ? 'active' : '' }}" href="{{ route('import-users') }}" wire:navigate>
+                {{ __('Import Excel') }}
+            </a>
+        </li>-->
       </ul>
       <!-- Right-aligned dropdown -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
