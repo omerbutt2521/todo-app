@@ -7,4 +7,5 @@ import 'tom-select/dist/css/tom-select.bootstrap5.css'; //similary for slim sele
 import 'bootstrap';  //for boostrap 5 js functionality
 import './bootstrap';
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
-import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css'
+import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css'
+//import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css'

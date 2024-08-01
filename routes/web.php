@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+    Route::view('bootstrap', 'bootstrap')
+    ->middleware(['auth', 'verified'])
+    ->name('bootstrap');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

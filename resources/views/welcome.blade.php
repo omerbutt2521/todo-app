@@ -6,6 +6,8 @@
     <title>Welcome</title>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
+    @livewireStyles
 </head>
 <body>
     <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center bg-light">
@@ -29,5 +31,6 @@
             @endif
         </div>
     </div>
+    @livewireScripts
 </body>
 </html>
