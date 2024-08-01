@@ -14,6 +14,8 @@
    
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
+     @livewireStyles
 </head>
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen d-flex flex-column justify-content-center align-items-center pt-6 sm:pt-0 bg-gray-100">
@@ -27,5 +29,6 @@
             {{ $slot }}
         </div>
     </div>
+    @livewireScripts
 </body>
 </html>
